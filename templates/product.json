@@ -130,7 +130,7 @@
     "26e7743f-ca12-4bd3-b353-256f4cb5b41c": {
       "type": "productimgvidslider",
       "custom_css": [
-        ".slider-container {background-color: lightblue; \/* Add your desired background color *\/ padding: 20px; height: 420px; width: 1080px;}"
+
       ],
       "settings": {
       }
