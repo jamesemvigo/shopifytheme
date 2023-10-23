@@ -24,6 +24,8 @@
 
 .slide {
   /* Add your custom styles for individual slides */
+  max-width: 100%;
+  height: auto;
 }
 {% endstylesheet %}
 
@@ -34,27 +36,18 @@
 <div class="slider-container">
   <div class="autoplay">
     <p>Testing productimgvidslider section</p>
-    {% assign image_media = product.metafields.custom.productimagevideoslider.images | split: ',' %}
-    {% assign video_media = product.metafields.custom.productimagevideoslider.videos | split: ',' %}
-    {% assign total_media = image_media.size | plus: video_media.size %}
+    {% assign media_items = product.metafields.custom.productimagevideoslider %}
     
-    {% assign shuffled_indices = "" %}
-    {% assign max_items = 10 %}
+    {% assign shuffled_media_items = media_items | shuffle %}
     
-    {% assign max_index = total_media | minus: 1 %}
-    
-    {% for i in (0..max_index) %}
-      {% assign random_index = i | times: max_items | divided_by: total_media | floor %}
-      {% assign int_index = random_index | plus: 0 %} {% comment %} Ensure the index is an integer {% endcomment %}
-      {% assign current_media_type = int_index | minus: image_media.size %}
-      
-      {% if current_media_type < 0 %}
+    {% for media_item in shuffled_media_items limit: 10 %}
+      {% if media_item contains 'MediaImage' %}
         <div class="slide">
-          <img src="{{ image_media[int_index] | img_url: '1600x800' }}" alt="Slide">
+          <img src="{{ 'https://cdn.shopify.com/' | append: media_item }}" alt="Slide">
         </div>
-      {% else %}
+      {% elsif media_item contains 'Video' %}
         <div class="slide">
-          <iframe width="100%" height="auto" src="{{ video_media[current_media_type] }}" frameborder="0" allowfullscreen></iframe>
+          <iframe width="100%" height="auto" src="{{ 'https://cdn.shopify.com/' | append: media_item }}" frameborder="0" allowfullscreen></iframe>
         </div>
       {% endif %}
     {% endfor %}
