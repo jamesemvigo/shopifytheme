@@ -1,10 +1,7 @@
 {% schema %}
 {
   "name": "productimgvidslider",
- 
-  
-      "settings": [],
-  
+  "settings": [],
   "presets": [
     {
       "name": "productimgvidslider",
@@ -24,14 +21,27 @@
 
 <div class="slider-container">
   <div class="autoplay">
-    {% for block in section.blocks %}
-      {% if block.type == 'image_block' and block.settings.image %}
+    {% assign image_media = product.metafields.productimagevideoslider.images | split: ',' %}
+    {% assign video_media = product.metafields.productimagevideoslider.videos | split: ',' %}
+    {% assign total_media = image_media.size | plus: video_media.size %}
+    
+    {% assign shuffled_indices = "" %}
+    {% assign max_items = 10 %}
+    
+    {% assign max_index = total_media | minus: 1 %}
+    
+    {% for i in (0..max_index) %}
+      {% assign random_index = i | times: max_items | divided_by: total_media | floor %}
+      {% assign int_index = random_index | plus: 0 %} {% comment %} Ensure the index is an integer {% endcomment %}
+      {% assign current_media_type = int_index | minus: image_media.size %}
+      
+      {% if current_media_type < 0 %}
         <div class="slide">
-          <img src="{{ block.settings.image | img_url: '1600x800' }}" alt="Slide">
+          <img src="{{ image_media[int_index] | img_url: '1600x800' }}" alt="Slide">
         </div>
-      {% elsif block.type == 'video_block' and block.settings.video_url %}
+      {% else %}
         <div class="slide">
-          <iframe width="100%" height="auto" src="{{ block.settings.video_url }}" frameborder="0" allowfullscreen></iframe>
+          <iframe width="100%" height="auto" src="{{ video_media[current_media_type] }}" frameborder="0" allowfullscreen></iframe>
         </div>
       {% endif %}
     {% endfor %}
