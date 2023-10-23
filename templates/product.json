@@ -53,12 +53,6 @@
           "settings": {
             "share_label": "Share"
           }
-        },
-        "37d235db-5235-49bc-a7f9-652b6bda15c8": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "{{ product.metafields.custom.productimagevideoslider }}"
-          }
         }
       },
       "block_order": [
@@ -70,8 +64,7 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "share",
-        "37d235db-5235-49bc-a7f9-652b6bda15c8"
+        "share"
       ],
       "settings": {
         "enable_sticky_info": true,
