@@ -39,7 +39,7 @@
     {% for media_item in media_items %}
       {% if media_item contains 'MediaImage' %}
         <div class="slide">
-          <img src="{{ media_item | split: '/' | last | prepend: 'https://cdn.shopify.com/assets/' }}" alt="Slide">
+          <img src="{{ media_item | file_url }}" alt="Slide">
         </div>
       {% elsif media_item contains 'Video' %}
         <div class="slide">
