@@ -25,7 +25,7 @@
 .slide {
   /* Add your custom styles for individual slides */
   max-width: 100%;
-  height: auto;
+  height: 300px;
 }
 {% endstylesheet %}
 
@@ -38,7 +38,9 @@
     <p>Testing productimgvidslider section</p>
     {% assign media_items = product.metafields.custom.productimagevideoslider %}
     
-    {% for media_item in media_items %}
+    {% assign shuffled_media_items = media_items | shuffle %}
+    
+    {% for media_item in shuffled_media_items limit: 10 %}
       {% if media_item contains 'MediaImage' %}
         <div class="slide">
           <img src="{{ 'https://cdn.shopify.com/' | append: media_item }}" alt="Slide">
