@@ -38,9 +38,7 @@
     <p>Testing productimgvidslider section</p>
     {% assign media_items = product.metafields.custom.productimagevideoslider %}
     
-    {% assign shuffled_media_items = media_items | shuffle %}
-    
-    {% for media_item in shuffled_media_items limit: 10 %}
+    {% for media_item in media_items %}
       {% if media_item contains 'MediaImage' %}
         <div class="slide">
           <img src="{{ 'https://cdn.shopify.com/' | append: media_item }}" alt="Slide">
