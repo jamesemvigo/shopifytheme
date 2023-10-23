@@ -34,8 +34,8 @@
 <div class="slider-container">
   <div class="autoplay">
     <p>Testing productimgvidslider section</p>
-    {% assign image_media = product.metafields.productimagevideoslider.images | split: ',' %}
-    {% assign video_media = product.metafields.productimagevideoslider.videos | split: ',' %}
+    {% assign image_media = product.metafields.custom.productimagevideoslider.images | split: ',' %}
+    {% assign video_media = product.metafields.custom.productimagevideoslider.videos | split: ',' %}
     {% assign total_media = image_media.size | plus: video_media.size %}
     
     {% assign shuffled_indices = "" %}
