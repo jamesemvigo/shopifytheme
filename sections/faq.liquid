@@ -1,0 +1,54 @@
+{% if section.settings.header != "" %}
+  <h2 class="faq-header">{{ section.settings.header }}</h2>
+{% endif %}
+
+{% if section.settings.my_image %}
+  <img src="{{ section.settings.my_image | img_url }}" alt="Uploaded Image" class="faq-image">
+{% endif %}
+
+{% if section.settings.my_product %}
+  <div class="selected-product">
+    <h2>Selected Product: {{ section.settings.my_product.title }}</h2>
+    <img src="{{ section.settings.my_product.featured_image | img_url: 'medium' }}" alt="{{ section.settings.my_product.title }}" class="product-image">
+    <p>Price: {{ section.settings.my_product.price | money }}</p>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "faq",
+  "tag": "section",
+  "class": "emvigo-test",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header",
+      "label": "My Label"
+    },
+    {
+      "type": "image_picker",
+      "id": "my_image",
+      "label": "Upload Image"
+    },
+    {
+      "type": "product",
+      "id": "my_product",
+      "label": "Select Product"
+    }
+  ],
+  "presets": [
+    {
+      "name": "faq"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.emvigo-test {
+  text-align: center;
+}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

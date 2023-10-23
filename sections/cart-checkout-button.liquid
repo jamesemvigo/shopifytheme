@@ -1,0 +1,27 @@
+{% schema %}
+{
+  "name": "Cart Checkout Button",
+  "presets": [
+    {
+      "name": "Cart Checkout Button",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+$(document).ready(function() {
+  // Get the cart item count using Shopify's cart object
+  var cartItemCount = {{ cart.item_count }};
+  
+  // Define the minimum quantity to show the checkout button
+  var minimumQuantityToShowButton = 5;
+  
+  // Check if the cart item count is less than the minimum quantity
+  if (cartItemCount < minimumQuantityToShowButton) {
+    // Hide the checkout button
+    $('.cart__checkout').hide();
+  }
+});
+{% endjavascript %}

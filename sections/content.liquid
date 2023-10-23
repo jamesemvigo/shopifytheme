@@ -1,0 +1,35 @@
+{% schema %}
+  {
+    "name": "content",
+    "presets": [
+      {
+        "name": "Default",
+        "category": "Custom"
+      }
+    ],
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "welcome_message",
+        "label": "Welcome Message",
+        "default": "Welcome to our page!"
+      }
+    ]
+  }
+{% endschema %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (document.cookie.indexOf('access=true') === -1) {
+      window.location.href = 'https://moment-pro-india.myshopify.com/pages/password-page';
+    }
+  });
+</script>
+
+<img src="{{ section.settings.image | img_url: 'master' }}" alt="Content Image">
+<p>{{ section.settings.welcome_message }}</p>
