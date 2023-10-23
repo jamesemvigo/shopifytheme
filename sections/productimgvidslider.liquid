@@ -22,10 +22,9 @@
   /* Add your custom styles for the autoplay container */
 }
 
-.slide {
-  /* Add your custom styles for individual slides */
+.slide img, .slide iframe {
   max-width: 100%;
-  height: 300px;
+  height: auto;
 }
 {% endstylesheet %}
 
@@ -35,19 +34,16 @@
 
 <div class="slider-container">
   <div class="autoplay">
-    <p>Testing productimgvidslider section</p>
-    {% assign media_items = product.metafields.custom.productimagevideoslider %}
+    {% assign media_items = product.metafields.custom.productimagevideoslider | split: ',' %}
     
-    {% assign shuffled_media_items = media_items | shuffle %}
-    
-    {% for media_item in shuffled_media_items limit: 10 %}
+    {% for media_item in media_items %}
       {% if media_item contains 'MediaImage' %}
         <div class="slide">
-          <img src="{{ 'https://cdn.shopify.com/' | append: media_item }}" alt="Slide">
+          <img src="{{ media_item | split: '/' | last | prepend: 'https://cdn.shopify.com/assets/' }}" alt="Slide">
         </div>
       {% elsif media_item contains 'Video' %}
         <div class="slide">
-          <iframe width="100%" height="auto" src="{{ 'https://cdn.shopify.com/' | append: media_item }}" frameborder="0" allowfullscreen></iframe>
+          <iframe width="100%" height="auto" src="{{ media_item }}" frameborder="0" allowfullscreen></iframe>
         </div>
       {% endif %}
     {% endfor %}
