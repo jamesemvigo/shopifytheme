@@ -57,7 +57,7 @@
         "5e280730-aa8a-4837-836c-7e8730393fd1": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "{{ product.metafields.custom.productimageslider | img_tag }}\n\n{{ product.metafields.custom.productvideoslider | video_tag }}"
+            "custom_liquid": "{{ product.metafields.custom.productimageslider | img_tag }}"
           }
         }
       },
