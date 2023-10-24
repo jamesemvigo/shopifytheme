@@ -22,6 +22,10 @@
   /* Add your custom styles for the autoplay container */
 }
 
+.slide {
+  /* Add your custom styles for individual slides */
+}
+
 .slide img, .slide iframe, .slide video {
   max-width: 100%;
   height: auto;
@@ -35,16 +39,21 @@
 <div class="slider-container">
   <div class="autoplay">
     {% assign product_images = product.metafields.custom.productimageslider | split: ',' %}
-{% assign product_videos = product.metafields.custom.productvideoslider | split: ',' %}
+    {% assign product_videos = product.metafields.custom.productvideoslider | split: ',' %}
 
-{% for image_url in product_images %}
-  <img src="{{ image_url }}" alt="Image">
-{% endfor %}
-{% for video_url in product_videos %}
-  <video controls>
-    <source src="{{ video_url }}" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-{% endfor %}
+    {% for image_url in product_images %}
+      <div class="slide">
+        <img src="{{ image_url }}" alt="Image">
+      </div>
+    {% endfor %}
+    
+    {% for video_url in product_videos %}
+      <div class="slide">
+        <video controls>
+          <source src="{{ video_url }}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    {% endfor %}
   </div>
 </div>
