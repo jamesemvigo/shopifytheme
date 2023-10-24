@@ -22,7 +22,7 @@
   /* Add your custom styles for the autoplay container */
 }
 
-.slide img, .slide iframe {
+.slide img, .slide iframe, .slide video {
   max-width: 100%;
   height: auto;
 }
@@ -37,13 +37,18 @@
     {% assign media_items = product.metafields.custom.productimagevideoslider | split: ',' %}
     
     {% for media_item in media_items %}
-      {% if media_item contains 'MediaImage' %}
+      {% assign file_type = media_item | split: '/' | last | split: '.' | last | downcase %}
+      
+      {% if file_type == 'jpg' or file_type == 'jpeg' or file_type == 'png' or file_type == 'gif' %}
         <div class="slide">
-          <img src="{{ media_item | file_url }}" alt="Slide">
+          <img src="{{ media_item | img_url:'master' }}" alt="Slide" loading="lazy" height="" width="">
         </div>
-      {% elsif media_item contains 'Video' %}
+      {% elsif file_type == 'mp4' or file_type == 'mov' %}
         <div class="slide">
-          <iframe width="100%" height="auto" src="{{ media_item }}" frameborder="0" allowfullscreen></iframe>
+          <video controls width="" height="">
+            <source src="{{ media_item }}" type="video/{{ file_type }}">
+            Your browser does not support the video tag.
+          </video>
         </div>
       {% endif %}
     {% endfor %}
