@@ -34,23 +34,18 @@
 
 <div class="slider-container">
   <div class="autoplay">
-    {% assign media_items = product.metafields.custom.productimagevideoslider | split: ',' %}
-    
-    {% for media_item in media_items %}
-      {% assign file_type = media_item | split: '/' | last | split: '.' | last | downcase %}
-      
-      {% if file_type == 'jpg' or file_type == 'jpeg' or file_type == 'png' or file_type == 'gif' %}
-        <div class="slide">
-          <img src="{{ media_item | img_url:'master' }}" alt="Slide" loading="lazy" height="" width="">
-        </div>
-      {% elsif file_type == 'mp4' or file_type == 'mov' %}
-        <div class="slide">
-          <video controls width="" height="">
-            <source src="{{ media_item }}" type="video/{{ file_type }}">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      {% endif %}
-    {% endfor %}
+    {% assign product_images = product.metafields.custom.productimageslider | split: ',' %}
+{% assign product_videos = product.metafields.custom.productvideoslider | split: ',' %}
+
+{% for image_url in product_images %}
+  <img src="{{ image_url }}" alt="Image">
+{% endfor %}
+
+{% for video_url in product_videos %}
+  <video controls>
+    <source src="{{ video_url }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+{% endfor %}
   </div>
 </div>
