@@ -21,7 +21,7 @@
 }
 
 .autoplay {
-  / No special styles needed here since Slick will control the layout /
+ 
 }
 
 .slide img, .slide iframe, .slide video {
@@ -41,9 +41,6 @@
 {% endstylesheet %}
 
 
-
-
-
 {% javascript %}
   
 $(document).ready(function(){
@@ -60,7 +57,7 @@ $(document).ready(function(){
 
 
 <div class="slider-container">
-  <div class="autoplay single-item"> <!-- Add the single-item class here -->
+  <div class="autoplay single-item"> 
     {% assign array_of_images = product.metafields.custom.productimageslider.value %}
     {% if array_of_images %}
       {% for product_image in array_of_images %}
