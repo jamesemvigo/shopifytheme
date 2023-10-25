@@ -2,6 +2,7 @@
 {
   "name": "productimgvidslider",
   "settings": [],
+ 
   "presets": [
     {
       "name": "productimgvidslider",
@@ -12,45 +13,64 @@
 {% endschema %}
 
 {% stylesheet %}
-/* Add your custom CSS styles here */
 .slider-container {
-  background-color: lightblue; /* Add your desired background color */
+  background-color: lightblue;
+  max-width:600px;
   padding: 20px;
+  position: relative;  /* Add this to allow child absolute positioning */
+  overflow: hidden; /* Hide overflow content */
 }
 
 .autoplay {
-  /* Add your custom styles for the autoplay container */
-}
-
-.slide {
-  /* Add your custom styles for individual slides */
+  /* No special styles needed here since Slick will control the layout */
 }
 
 .slide img, .slide iframe, .slide video {
   max-width: 100%;
   height: auto;
+  display: block; /* Remove default margins */
+  margin: 0 auto; /* Center the image horizontally */
 }
+
+
+  .slider-container .single-item {
+    width: 600px; /* Make sure the images fill the slider container */
+    height: auto%; /* Maintain aspect ratio */
+    padding: 10px;
+  }
+ 
 {% endstylesheet %}
 
+
+
+
+
 {% javascript %}
-/* Add your JavaScript code here */
+ 
+$(document).ready(function(){
+  $('.single-item').slick({
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: true,
+    dots: true,
+  });
+});
+
+
 {% endjavascript %}
 
+
 <div class="slider-container">
-  <div class="autoplay">
-    {% assign array_of_media = product.metafields.custom.productimageslider.value %}
-    {% if array_of_media %}
-      {% for media_item in array_of_media %}
-        {% assign file_extension = media_item | split: '.' | last | downcase %}
-        {% if file_extension == 'jpg' or file_extension == 'jpeg' or file_extension == 'png' %}
-          <img src="{{ media_item | image_url }}" alt="Image">
-        {% elsif file_extension == 'mp4' %}
-          <video controls>
-            <source src="{{ media_item }}" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        {% endif %}
+  <div class="autoplay single-item"> <!-- Add the single-item class here -->
+    {% assign array_of_images = product.metafields.custom.productimageslider.value %}
+    {% if array_of_images %}
+      {% for product_image in array_of_images %}
+        <div class="slide">
+          <img src="{{ product_image | image_url }}">
+        </div>
       {% endfor %}
     {% endif %}
+    <!-- Slick will automatically add arrows, so you don't need these buttons -->
+   
   </div>
 </div>
