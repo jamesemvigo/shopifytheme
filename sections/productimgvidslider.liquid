@@ -17,19 +17,19 @@
   background-color: lightblue;
   max-width:600px;
   padding: 20px;
-  position: relative;  /* Add this to allow child absolute positioning */
-  overflow: hidden; /* Hide overflow content */
+  position: relative; 
+  overflow: hidden; 
 }
 
 .autoplay {
-  /* No special styles needed here since Slick will control the layout */
+   /* No special styles needed here since Slick will control the layout  */
 }
 
 .slide img, .slide iframe, .slide video {
   max-width: 100%;
   height: auto;
-  display: block; /* Remove default margins */
-  margin: 0 auto; /* Center the image horizontally */
+  display: block; 
+  margin: 0 auto; 
 }
 
 
@@ -60,7 +60,7 @@ $(document).ready(function(){
 {% endjavascript %}
 
 <div class="slider-container">
-  <div class="autoplay single-item"> <!-- Add the single-item class here -->
+  <div class="autoplay single-item"> 
     {% assign array_of_images = product.metafields.custom.productimageslider.value %}
     {% if array_of_images %}
       {% for product_image in array_of_images %}
@@ -69,6 +69,6 @@ $(document).ready(function(){
         </div>
       {% endfor %}
     {% endif %}
-    <!-- Slick will automatically add arrows, so you don't need these buttons -->   
+  
   </div>
 </div>
