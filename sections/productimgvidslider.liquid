@@ -38,12 +38,19 @@
 
 <div class="slider-container">
   <div class="autoplay">
-{% assign array_of_badges = product.metafields.custom.productimagevideoslider.value %}
-{% if array_of_badges %}
- {% for product_badge in array_of_badges %}
-  <img src="{{ product_badge | image_url }}">
- {% endfor %}
-{% endif %}
-
+    {% assign array_of_media = product.metafields.custom.productimagevideoslider.value %}
+    {% if array_of_media %}
+      {% for media_item in array_of_media %}
+        {% assign file_extension = media_item | split: '.' | last | downcase %}
+        {% if file_extension == 'jpg' or file_extension == 'jpeg' or file_extension == 'png' %}
+          <img src="{{ media_item | image_url }}" alt="Image">
+        {% elsif file_extension == 'mp4' %}
+          <video controls>
+            <source src="{{ media_item }}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
   </div>
 </div>
