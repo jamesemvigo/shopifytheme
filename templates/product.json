@@ -99,11 +99,6 @@
         "padding_bottom": 28
       }
     },
-    "a5067f62-5b08-4a03-80fd-f276cfe8b6a4": {
-      "type": "productimgvidslider",
-      "settings": {
-      }
-    },
     "16976993142a42abb1": {
       "type": "apps",
       "blocks": {
@@ -131,12 +126,17 @@
       "settings": {
         "include_margins": true
       }
+    },
+    "d8187d42-76e9-4a3f-9dd4-8c3a66225d37": {
+      "type": "productimgvidslider",
+      "settings": {
+      }
     }
   },
   "order": [
     "main",
     "related-products",
-    "a5067f62-5b08-4a03-80fd-f276cfe8b6a4",
-    "16976993142a42abb1"
+    "16976993142a42abb1",
+    "d8187d42-76e9-4a3f-9dd4-8c3a66225d37"
   ]
 }
