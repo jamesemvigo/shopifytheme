@@ -53,12 +53,6 @@
           "settings": {
             "share_label": "Share"
           }
-        },
-        "5e280730-aa8a-4837-836c-7e8730393fd1": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": ""
-          }
         }
       },
       "block_order": [
@@ -70,8 +64,7 @@
         "variant_picker",
         "quantity_selector",
         "buy_buttons",
-        "share",
-        "5e280730-aa8a-4837-836c-7e8730393fd1"
+        "share"
       ],
       "settings": {
         "enable_sticky_info": true,
@@ -106,6 +99,11 @@
         "padding_bottom": 28
       }
     },
+    "a5067f62-5b08-4a03-80fd-f276cfe8b6a4": {
+      "type": "productimgvidslider",
+      "settings": {
+      }
+    },
     "16976993142a42abb1": {
       "type": "apps",
       "blocks": {
@@ -133,17 +131,12 @@
       "settings": {
         "include_margins": true
       }
-    },
-    "a5067f62-5b08-4a03-80fd-f276cfe8b6a4": {
-      "type": "productimgvidslider",
-      "settings": {
-      }
     }
   },
   "order": [
     "main",
     "related-products",
-    "16976993142a42abb1",
-    "a5067f62-5b08-4a03-80fd-f276cfe8b6a4"
+    "a5067f62-5b08-4a03-80fd-f276cfe8b6a4",
+    "16976993142a42abb1"
   ]
 }
